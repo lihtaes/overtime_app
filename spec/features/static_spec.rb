@@ -1,5 +1,3 @@
-# spec/features/static_spec.rb
-
 require 'rails_helper'
 
 describe 'navigate' do
