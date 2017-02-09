@@ -16,3 +16,6 @@ x User -> Devise
 
 ## UI:
 - Bootstrap -> formatting
+
+## Refactor TODOS:
+- user association integration tests in post_spec
