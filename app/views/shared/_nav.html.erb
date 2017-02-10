@@ -1,0 +1,20 @@
+<div class="logo text-center"> <h1>Time Tracker</h1> </div>
+
+<ul class="custom-nav nav nav-tabs">
+  <li class="active">
+    <%= link_to "home", root_path %>
+  </li>
+  <li>
+    <%= link_to "Time Entries", posts_path %>
+  </li>
+  <li class="dropdown pull-right">
+     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Account<strong class="caret"></strong></a>
+    <ul class="dropdown-menu">
+      <li>
+        <%= link_to "Edit details", edit_user_registration_path %>
+      </li>      <li>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+      </li>
+    </ul>
+  </li>
+</ul>
