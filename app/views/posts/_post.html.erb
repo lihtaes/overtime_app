@@ -11,4 +11,7 @@
   <td>
     <%= post.rationale.truncate(25) %>
   </td>
+  <td id="<%= "edit_#{post.id}" %>">
+    <%= link_to "Edit", edit_post_path(post), id: "edit_#{post.id}"%>
+  </td>
 </tr> 
