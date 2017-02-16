@@ -1,3 +1,7 @@
+AdminUser.create(email: "admin@test.com", password: "password", password_confirmation: "password", first_name: "Jamie", last_name: "Lannister")
+
+puts "1 Admin User created"
+
 @user = User.create(email: "test@test.com", password: "asdfasdf", password_confirmation: "asdfasdf", first_name: "Jon", last_name: "Snow")
 
 puts "1 user created

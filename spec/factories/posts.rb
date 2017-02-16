@@ -10,4 +10,11 @@ FactoryGirl.define do
     rationale "Some more content"
     user
   end
+
+  factory :third_post, class: "Post" do
+    date Date.today
+    rationale "You can't see me if you didn't post me"
+    admin_user
+  end
+
 end

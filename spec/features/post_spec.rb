@@ -1,21 +1,27 @@
 require 'rails_helper'
 
 describe 'navigate' do
+
+  let(:user) { FactoryGirl.create(:user) }
+  let(:post) do
+    Post.create(date: Date.today, rationale: "Rationale", user_id: user.id)
+  end
+
   before do
-      @user = FactoryGirl.create(:user)
-      login_as(@user, :scope => :user)
-    end
+    login_as(user, :scope => :user)
+  end
 
   describe 'index' do
     before do
-       visit posts_path
+      visit posts_path
     end
-    it 'can be reached successfully' do        
+
+    it 'can be reached successfully' do
       expect(page.status_code).to eq(200)
     end
 
-    it 'has a title of Posts' do 
-      expect(page).to have_content(/Time Entries/)
+    it 'has a title of Posts' do
+      expect(page).to have_content(/Time Tracker/)
     end
 
     it 'has a list of posts' do
@@ -24,29 +30,40 @@ describe 'navigate' do
       visit posts_path
       expect(page).to have_content(/Rationale|content/)
     end
+
+    it 'has a scope so that only post creators can see their posts' do
+      visit posts_path
+      expect(page).to_not have_content(/You can't see me/)
+    end
   end
 
   describe 'new' do
     it 'has a link from the homepage' do
       visit root_path
-      click_link "new_post_from_nav"
+
+      click_link("new_post_from_nav")
       expect(page.status_code).to eq(200)
     end
   end
 
   describe 'delete' do
     it 'can be deleted' do
-      @post = FactoryGirl.create(:post)
+      logout(:user)
+
+      delete_user = FactoryGirl.create(:user)
+      login_as(delete_user, :scope => :user)
+
+      post_to_delete = Post.create(date: Date.today, rationale: 'asdf', user_id: delete_user.id)
+
       visit posts_path
 
-      click_link("delete_post_#{@post.id}_from_index")
+      click_link("delete_post_#{post_to_delete.id}_from_index")
       expect(page.status_code).to eq(200)
-      end
     end
+  end
 
   describe 'creation' do
     before do
-      
       visit new_post_path
     end
 
@@ -72,17 +89,10 @@ describe 'navigate' do
   end
 
   describe 'edit' do
-    before do
-      @post = FactoryGirl.create(:post)
-    end
-    it 'can be reached by clicking edit on index page' do
-      visit posts_path
-      click_link "edit_#{@post.id}"
-      expect(page.status_code).to eq(200)
-    end
+
 
     it 'can be edited' do
-      visit edit_post_path(@post)
+      visit edit_post_path(post)
 
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: "Edited content"
@@ -90,41 +100,15 @@ describe 'navigate' do
 
       expect(page).to have_content("Edited content")
     end
+
+    it 'cannot be edited by a non authorized user' do
+      logout(:user)
+      non_authorized_user = FactoryGirl.create(:non_authorized_user)
+      login_as(non_authorized_user, :scope => :user)
+
+      visit edit_post_path(post)
+
+      expect(current_path).to eq(posts_path)
+    end
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
