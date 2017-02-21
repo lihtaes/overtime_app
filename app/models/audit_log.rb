@@ -9,7 +9,6 @@ class AuditLog < ApplicationRecord
 
   def set_defaults
     self.start_date ||= (Date.today - 6.days)
-
   end
 
 end
