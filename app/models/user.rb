@@ -3,6 +3,7 @@ class User < ApplicationRecord
   PHONE_REGEXP = /\A[0-9]*\Z/
 
   has_many :posts
+  has_many :audit_logs
  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
