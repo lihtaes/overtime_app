@@ -11,3 +11,8 @@ puts "1 user created
 end
 
 puts "10 posts created"
+
+10.times do |audit_log|
+  AuditLog.create!(user_id: User.last.id, status: 0, start_date: (Date.today - 6.days))
+end
+  puts "10 audit logs created"
