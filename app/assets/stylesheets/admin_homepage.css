@@ -1,0 +1,30 @@
+.pending-homepage {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #E3E3E3;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 20px;
+}
+
+.homepage-block {
+  background-color: #1D3C91;
+  color: white;
+  margin-top: 15px;
+  margin-left: 43px;
+  margin-right:43px;
+  padding: 15px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  transition-duration: .4s;
+}
+
+.pending-details {
+  font-weight: 900;
+}
+
+.homepage-block:hover {
+  background-color: #172b63;
+}

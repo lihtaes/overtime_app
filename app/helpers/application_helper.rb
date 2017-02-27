@@ -5,6 +5,14 @@ module ApplicationHelper
   end
 
 
+  def homepage_view
+    if admin_types.include?(current_user.try(:type))
+      render 'admin'
+    else
+      render 'employee'
+    end
+  end
+
   def status_label status
     status_span_generator status
   end
@@ -24,5 +32,9 @@ module ApplicationHelper
       when 'confirmed'
         content_tag(:span, status.titleize, class: 'label label-success')
       end
+    end
+
+    def admin_types
+      ['AdminUser']
     end
 end
