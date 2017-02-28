@@ -10,9 +10,11 @@ puts "1 user created
   Post.create!(date: Date.today, rationale: "Because it gotta be done!#{post}", user_id: @user.id, overtime_request: 2.5)
 end
 
-puts "10 posts created"
+puts "20 posts created"
 
-30.times do |audit_log|
-  AuditLog.create!(user_id: @user.id, status: 0, start_date: (Date.today - 6.days))
-end
-  puts "10 audit logs created"
+AuditLog.create!(user_id: @user.id, status: 0, start_date: (Date.today - 27.days))
+AuditLog.create!(user_id: @user.id, status: 0, start_date: (Date.today - 6.days))
+AuditLog.create!(user_id: @user.id, status: 0, start_date: (Date.today - 13.days))
+AuditLog.create!(user_id: @user.id, status: 0, start_date: (Date.today - 20.days))
+
+puts "4 audit logs created"
