@@ -20,7 +20,7 @@ describe 'navigate' do
       expect(page.status_code).to eq(200)
     end
 
-    it 'has a title of Posts' do
+    it 'has a title of Time Tracker' do
       expect(page).to have_content(/Time Tracker/)
     end
 

@@ -20,9 +20,7 @@
       <div>
         <h4><span>Current Stage of Approval:</span> <%= @post.status %></h4>
       </div>
-      <div>
-        <%= link_to 'Edit this entry', edit_post_path(@post), class: 'btn btn-primary' if policy(@post).update? %>  
-      </div>
+        <%= render partial: "shared/status_controls", locals: {pending_approval: @post }%>
     </div>
   </div>
 </div>

@@ -8,6 +8,9 @@
     <li class="<%= active?(root_path) %>">
        <%= link_to "", root_path, class: 'glyphicon glyphicon-home' %>
     </li>   
+    <li class="<%= active?(posts_path) %>">
+      <%= link_to "Entries", posts_path %>
+    </li>
 
     <%= render "shared/employee_nav_items" if employee? %>
 

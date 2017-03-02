@@ -2,7 +2,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :approve, :reject]
   
   def index
-    @posts = Post.posts_by(current_user).page(params[:page]).per(15)
+    if admin_types.include?(current_user.type)
+      @posts = Post.all.page(params[:page]).per(15)
+    else
+      @posts = Post.posts_by(current_user).page(params[:page]).per(15)
+    end
   end
 
   def new
