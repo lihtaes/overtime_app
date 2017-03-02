@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class UserDashboard < Administrate::BaseDashboard
+class EmployeeDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     posts: Field::HasMany.with_options(searchable: false),
     id: Field::Number.with_options(searchable: false),
@@ -21,12 +21,13 @@ class UserDashboard < Administrate::BaseDashboard
 
   COLLECTION_ATTRIBUTES = [
     :posts,
+    :id,
     :email,
-    :type
   ].freeze
 
   SHOW_PAGE_ATTRIBUTES = [
     :posts,
+    :id,
     :email,
     :phone,
     :sign_in_count,
@@ -46,6 +47,7 @@ class UserDashboard < Administrate::BaseDashboard
     :password,
     :first_name,
     :last_name,
+    :type,
     :phone,
   ].freeze
 end

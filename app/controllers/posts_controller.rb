@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :approve]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :approve, :reject]
   
   def index
     @posts = Post.posts_by(current_user).page(params[:page]).per(15)
@@ -48,6 +48,11 @@ class PostsController < ApplicationController
     redirect_case "approve"
   end
 
+  def reject
+    @post.rejected!
+    redirect_case "reject"
+  end
+
 
   private
   def post_params
@@ -70,6 +75,9 @@ class PostsController < ApplicationController
         path = posts_path 
       when "approve"
         changed = "approved"
+        path = root_path
+      when "reject"
+        changed = "rejected"
         path = root_path
       else
         changed = 'changed'

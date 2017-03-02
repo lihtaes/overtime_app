@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :users
     resources :posts
     resources :admin_users
+    resources :employees
 
     root to: "users#index"
   end
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   resources :posts do
     member do
       get :approve
+      get :reject
     end
   end
   

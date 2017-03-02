@@ -12,11 +12,11 @@ class AdminUserDashboard < Administrate::BaseDashboard
     current_sign_in_ip: Field::String.with_options(searchable: false),
     last_sign_in_ip: Field::String.with_options(searchable: false),
     first_name: Field::String.with_options(searchable: false),
-    last_name: Field::String.with_options(searchable: true),
+    last_name: Field::String.with_options(searchable: false),
     created_at: Field::DateTime.with_options(searchable: false),
     updated_at: Field::DateTime.with_options(searchable: false),
     type: Field::String.with_options(searchable: false),
-    phone: Field::String.with_options(searchable:false),
+    phone: Field::String.with_options(searchable: false),
   }.freeze
 
   COLLECTION_ATTRIBUTES = [
@@ -29,6 +29,7 @@ class AdminUserDashboard < Administrate::BaseDashboard
     :posts,
     :id,
     :email,
+    :phone,
     :sign_in_count,
     :current_sign_in_at,
     :last_sign_in_at,
@@ -39,7 +40,6 @@ class AdminUserDashboard < Administrate::BaseDashboard
     :created_at,
     :updated_at,
     :type,
-    :phone,
   ].freeze
 
   FORM_ATTRIBUTES = [
